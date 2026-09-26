@@ -1,0 +1,56 @@
+{
+  "brand": "Planet Town",
+  "nav": { "ilive": "ilive", "music": "Music", "feedback": "Contact" },
+  "planet": {
+    "h1": "Planet Town",
+    "intro": "Drag to rotate the planet, scroll to zoom, and rest the pointer on any stage to open its concert details. A pilgrimage for the ears and the eyes.",
+    "loading": "Lighting up the planet, please wait..."
+  },
+  "welcome": {
+    "eyebrow": "An invitation from a little planet",
+    "title": "Hey, let's take a stroll.",
+    "body": "My name is layicr. This is our concert - and your story too.",
+    "ctrl1Val": "Concerts",
+    "ctrl2Val": "Artists",
+    "ctrl3Val": "Cities",
+    "cta": "Let's wander",
+    "hint": "No rush - start whenever you like",
+    "close": "Close"
+  },
+  "search": {
+    "placeholder": "Search artist / theme / city / concert…",
+    "clear": "Clear",
+    "empty": "No matching artists, themes, cities or concerts. Try another keyword."
+  },
+  "card": {
+    "starring": "Starring",
+    "theme": "Theme",
+    "earSuffix": "ear-elf",
+    "genre": "Genre",
+    "heat": "Popularity",
+    "fans": "Live fans",
+    "session": "Shows",
+    "artist": "Artist",
+    "place": "Venue",
+    "time": "Time",
+    "seat": "Seat",
+    "price": "Price",
+    "songs": "Setlist",
+    "tags": "Tags",
+    "like": "Like",
+    "liked": "Liked",
+    "viewSetlist": "View setlist",
+    "watchVideo": "Watch video",
+    "openVideo": "Open video",
+    "searchSong": "Search songs",
+    "noMatch": "No matching songs",
+    "play": "Play",
+    "maximize": "Maximize",
+    "restore": "Restore"
+  },
+  "error": {
+    "notFound": "Page not found",
+    "generic": "Something went wrong",
+    "backHome": "← Back to home"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "brand": "星球小镇",
+  "nav": { "ilive": "ilive", "music": "播放音乐", "feedback": "联系我们" },
+  "planet": {
+    "h1": "星球小镇",
+    "intro": "拖动旋转星球，滚轮缩放远近，把鼠标停在任意一座舞台上查看演唱会详情。这是一场属于耳朵与眼睛的巡礼。",
+    "loading": "正在点亮星球，请稍候……"
+  },
+  "welcome": {
+    "eyebrow": "一封来自小星球的邀请",
+    "title": "嘿，来散散步吧。",
+    "body": "我的名字是：layicr。这是我们的演唱会，也是你的故事。",
+    "ctrl1Val": "演唱会",
+    "ctrl2Val": "艺人",
+    "ctrl3Val": "城市",
+    "cta": "出发，去逛逛",
+    "hint": "©Layicr",
+    "close": "关闭"
+  },
+  "search": {
+    "placeholder": "搜索艺人 / 主题 / 城市 / 演唱会…",
+    "clear": "清空",
+    "empty": "没有匹配的艺人、主题、城市或演唱会，换个关键词试试～"
+  },
+  "card": {
+    "starring": "主演",
+    "theme": "主题",
+    "earSuffix": "耳精灵",
+    "genre": "曲风",
+    "heat": "人气",
+    "fans": "现场观众",
+    "session": "场次",
+    "artist": "艺人",
+    "place": "场馆",
+    "time": "时间",
+    "seat": "座位",
+    "price": "票价",
+    "songs": "歌单",
+    "tags": "标签",
+    "like": "♡ 点赞",
+    "liked": "♥ 已赞",
+    "viewSetlist": "查看歌单",
+    "watchVideo": "观看视频",
+    "openVideo": "打开视频",
+    "searchSong": "搜索歌曲",
+    "noMatch": "未找到匹配的歌曲",
+    "play": "播放",
+    "maximize": "最大化",
+    "restore": "还原"
+  },
+  "error": {
+    "notFound": "这个页面不存在",
+    "generic": "出了一点问题",
+    "backHome": "← 返回首页"
+  }
+}

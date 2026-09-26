@@ -1,0 +1,37 @@
+# ============================================================
+# Vercel 部署忽略清单 · .vercelignore
+# 说明：Vercel 已自动忽略 .git / .gitignore / .vercel / node_modules，
+#       以下仅列出「项目特有、不应进入线上构建/静态产物」的文件与目录。
+# ============================================================
+
+# 本地开发数据库（线上走远程 Turso，无需上传；
+# 同时避免被 Nitro 当静态资源打包 / 对外暴露）
+data/
+
+# 测试与端到端套件（非运行时必需，且含 fixture 种子脚本）
+test
+test-results
+coverage
+doc
+scripts
+playwright.config.ts
+vitest.config.mts
+
+# 开发文档（不随线上运行时部署）
+doc/
+
+# 环境变量与密钥（已被 .gitignore 覆盖，这里再显式排除保险）
+.env
+.env.*
+!.env.example
+
+# 日志与本地缓存
+*.log
+
+# 编辑器 / 系统杂项
+.vscode/
+.idea/
+.trae
+.workbuddy
+.DS_Store
+Thumbs.db

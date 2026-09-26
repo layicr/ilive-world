@@ -1,0 +1,56 @@
+{
+  "brand": "星球小鎮",
+  "nav": { "ilive": "ilive", "music": "播放音樂", "feedback": "聯繫我們" },
+  "planet": {
+    "h1": "星球小鎮",
+    "intro": "拖動旋轉星球，滾輪縮放遠近，把滑鼠停在任意一座舞台上查看演唱會詳情。這是一場屬於耳朵與眼睛的巡禮。",
+    "loading": "正在點亮星球，請稍候……"
+  },
+  "welcome": {
+    "eyebrow": "一封來自小星球的邀請",
+    "title": "嘿，來散散步吧。",
+    "body": "我的名字是：layicr。這是我們的演唱會，也是你的故事。",
+    "ctrl1Val": "演唱會",
+    "ctrl2Val": "藝人",
+    "ctrl3Val": "城市",
+    "cta": "出發，去逛逛",
+    "hint": "不用著急，隨時可以開始",
+    "close": "關閉"
+  },
+  "search": {
+    "placeholder": "搜索藝人 / 主題 / 城市 / 演唱會…",
+    "clear": "清空",
+    "empty": "沒有匹配的藝人、主題、城市或演唱會，換個關鍵詞試試～"
+  },
+  "card": {
+    "starring": "主演",
+    "theme": "主題",
+    "earSuffix": "耳精靈",
+    "genre": "曲風",
+    "heat": "人氣",
+    "fans": "現場觀眾",
+    "session": "場次",
+    "artist": "歌手",
+    "place": "場館",
+    "time": "時間",
+    "seat": "座位",
+    "price": "票價",
+    "songs": "歌單",
+    "tags": "標籤",
+    "like": "♡ 按讚",
+    "liked": "♥ 已讚",
+    "viewSetlist": "查看歌單",
+    "watchVideo": "觀看視頻",
+    "openVideo": "打開視頻",
+    "searchSong": "搜索歌曲",
+    "noMatch": "未找到匹配的歌曲",
+    "play": "播放",
+    "maximize": "最大化",
+    "restore": "還原"
+  },
+  "error": {
+    "notFound": "這個頁面不存在",
+    "generic": "出了一點問題",
+    "backHome": "← 返回首頁"
+  }
+}

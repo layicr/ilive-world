@@ -1,0 +1,125 @@
+/* 星球小镇 · 全站基础样式（轻量手写，无组件库） · Planet-town: global base styles (lightweight hand-written, no component lib) */
+:root {
+  --bg: #0f1424;
+  --ink: #24304a;
+  --accent: #b4935c;
+  --pink: #ff8a98;
+  --maxw: 1080px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", -apple-system, sans-serif;
+  color: var(--ink);
+  background: radial-gradient(1200px 700px at 50% -10%, #26314f 0%, var(--bg) 60%, #0b0f1c 100%);
+  min-height: 100vh;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.site-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 30;
+  display: flex; align-items: center; justify-content: flex-end;
+  gap: 16px; padding: 14px clamp(16px, 5vw, 48px);
+}
+.nav { display: flex; align-items: center; gap: 8px; }
+.nav a { padding: 8px 14px; border-radius: 999px; color: #f4efe1; font-weight: 600; font-size: 14px; transition: .18s; }
+.nav a:hover { background: rgba(255, 255, 255, .1); color: #fff; }
+.nav a.router-link-active { background: rgba(255, 200, 120, .18); color: #ffe9c7; }
+.nav-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border: 0; border-radius: 999px; background: transparent; color: #f4efe1; font-weight: 600; font-size: 14px; font-family: inherit; cursor: pointer; transition: .18s; }
+.nav-btn:hover { background: rgba(255, 255, 255, .1); color: #fff; }
+.nav-btn[aria-pressed="true"] { background: rgba(255, 200, 120, .18); color: #ffe9c7; }
+
+.locale-switch { position: relative; }
+.locale-btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.06); color: #f4efe1; cursor: pointer; font-size: 13px; font-weight: 600; }
+.locale-menu { position: absolute; right: 0; top: 110%; min-width: 132px; background: #fff7e8; border: 1px solid var(--accent); border-radius: 12px; padding: 6px; box-shadow: 0 12px 30px rgba(0,0,0,.28); display: flex; flex-direction: column; }
+.locale-menu a { padding: 8px 10px; border-radius: 8px; color: var(--ink); font-size: 13px; font-weight: 600; }
+.locale-menu a:hover { background: #f0e2c4; }
+.locale-menu a.active { background: #e9d3a6; }
+
+/* 404 / 错误页 · 404 / error page */
+.page { max-width: var(--maxw); margin: 0 auto; padding: clamp(28px, 6vw, 72px) clamp(16px, 5vw, 40px) 60px; color: #eaf0ff; }
+.btn { display: inline-block; padding: 12px 26px; border-radius: 999px; font-weight: 700; font-size: 15px; transition: .18s; }
+.btn-primary { background: linear-gradient(135deg, var(--pink), #ffb27a); color: #3a2233; box-shadow: 0 10px 24px rgba(255,138,152,.35); }
+.btn-primary:hover { transform: translateY(-2px); }
+
+/* planet 页：3D 场景铺满整个视口，头部浮动覆盖 · planet page: 3D scene fills the viewport, header floats over it */
+html, body { overflow-x: hidden; }
+.planet-wrap { width: 100%; max-width: none; margin: 0; padding: 0; color: #eaf0ff; }
+.canvas-shell { position: relative; width: 100vw; height: 100vh; min-height: 100vh; margin: 0; border: 0; border-radius: 0; box-shadow: none; overflow: hidden; background: #0b1020; }
+.canvas-shell canvas { display: block; width: 100% !important; height: 100% !important; }
+.canvas-loading { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #ffe9c7; font-size: 15px; letter-spacing: .5px; }
+
+/* 首页欢迎卡（原 WelcomeCard.vue 非 scoped 样式，集中到全局） · Homepage welcome card (moved out of WelcomeCard.vue's unscoped style) */
+.welcome-card {
+  position: fixed;
+  left: clamp(16px, 4vw, 48px);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 25;
+  width: min(340px, calc(100vw - 32px));
+  max-height: calc(100vh - 96px);
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 22px 22px 20px;
+  border-radius: 22px;
+  background: #f4efe1;
+  color: #3a3a2e;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+.wc-close {
+  position: absolute; top: 14px; right: 14px;
+  width: 28px; height: 28px; border-radius: 50%;
+  border: none; background: rgba(0, 0, 0, 0.06); color: #6b6a55;
+  font-size: 14px; line-height: 1; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+.wc-close:hover { background: rgba(0, 0, 0, 0.12); }
+.wc-badge {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: #eef0d8; color: #8a9a3b;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; margin-bottom: 12px;
+}
+.wc-eyebrow { margin: 0 0 6px; font-size: 12px; color: #8f8c72; letter-spacing: .3px; }
+.wc-title { margin: 0 0 10px; font-size: 22px; font-weight: 800; color: #2f2f22; }
+.wc-body { margin: 0 0 16px; font-size: 13.5px; line-height: 1.7; color: #5c5a48; }
+.wc-controls {
+  margin: 0 0 18px; padding: 12px 14px;
+  border-radius: 14px; background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  display: grid; grid-template-columns: 1fr; gap: 8px;
+}
+.wc-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 12.5px; }
+.wc-row dt { margin: 0; color: #8a876f; font-weight: 600; }
+.wc-row dd { margin: 0; color: #4a4838; }
+.wc-cta {
+  width: 100%; display: flex; align-items: center; justify-content: space-between;
+  padding: 13px 18px; border: none; border-radius: 999px; cursor: pointer;
+  background: linear-gradient(135deg, #9db452, #7f9a3c); color: #fff;
+  font-size: 15px; font-weight: 700; letter-spacing: .3px;
+  box-shadow: 0 10px 22px rgba(127, 154, 60, 0.4);
+  transition: transform .18s;
+}
+.wc-cta:hover { transform: translateY(-2px); }
+.wc-cta-arrow { font-size: 16px; }
+.wc-hint { margin: 12px 0 0; text-align: center; font-size: 11.5px; color: #9a977f; }
+
+/* 进入 / 退出过渡 · enter / leave transition */
+.wc-fade-enter-active, .wc-fade-leave-active { transition: opacity .35s ease, transform .35s ease; }
+.wc-fade-enter-from, .wc-fade-leave-to { opacity: 0; transform: translateY(-50%) scale(0.96); }
+
+/* 窄屏：贴左居中会遮挡星球，改为底部浮层 · narrow screens: left-centered would cover the planet, dock to the bottom */
+@media (max-width: 640px) {
+  .welcome-card {
+    left: 12px; right: 12px; width: auto;
+    top: auto; bottom: 12px; transform: none;
+    max-height: 72vh;
+  }
+  .wc-fade-enter-from, .wc-fade-leave-to { opacity: 0; transform: translateY(12px); }
+}
+

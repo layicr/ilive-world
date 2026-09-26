@@ -1,0 +1,14 @@
+node_modules/
+.nuxt/
+.output/
+data/
+dist/
+
+# 环境变量 / 本地日志
+.env
+*.log
+
+# 测试产物
+test-results/
+playwright-report/
+coverage/
