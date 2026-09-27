@@ -113,6 +113,117 @@ html, body { overflow-x: hidden; }
 .wc-fade-enter-active, .wc-fade-leave-active { transition: opacity .35s ease, transform .35s ease; }
 .wc-fade-enter-from, .wc-fade-leave-to { opacity: 0; transform: translateY(-50%) scale(0.96); }
 
+/* 右侧演唱会列表浮层（伸缩） · Right-side collapsible concert list overlay */
+.concert-list {
+  position: fixed;
+  right: clamp(16px, 4vw, 48px);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 25;
+  width: min(300px, calc(100vw - 32px));
+  max-height: calc(100vh - 96px);
+  display: flex; flex-direction: column;
+  box-sizing: border-box;
+  padding: 18px 18px 14px;
+  border-radius: 22px;
+  background: #f4efe1;
+  color: #3a3a2e;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+.cl-head { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.cl-badge {
+  width: 28px; height: 28px; border-radius: 50%; flex: none;
+  background: #eef0d8; color: #8a9a3b; font-size: 14px;
+  display: flex; align-items: center; justify-content: center;
+}
+.cl-title { margin: 0; flex: 1; font-size: 15px; font-weight: 800; color: #2f2f22; }
+.cl-count {
+  font-size: 11.5px; font-weight: 700; color: #7f9a3c;
+  background: rgba(255, 255, 255, .65); border: 1px solid rgba(0, 0, 0, .05);
+  border-radius: 999px; padding: 3px 9px;
+}
+.cl-min {
+  flex: none; width: 24px; height: 24px; margin-left: 2px; cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, .06); border-radius: 8px;
+  background: rgba(255, 255, 255, .65); color: #7f9a3c;
+  font-size: 15px; font-weight: 700; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .18s, transform .18s;
+}
+.cl-min:hover { background: #fff; transform: translateY(-1px); }
+.cl-items {
+  list-style: none; margin: 0; padding: 0; min-height: 0;
+  overflow-y: auto; display: grid; gap: 8px;
+}
+.cl-item {
+  width: 100%; text-align: left; cursor: pointer; font: inherit; color: inherit;
+  display: grid; gap: 2px; padding: 10px 12px; box-sizing: border-box;
+  border-radius: 14px; border: 1px solid rgba(0, 0, 0, .05);
+  background: rgba(255, 255, 255, .55);
+  transition: background .18s, transform .18s;
+}
+.cl-item:hover { background: #fff; transform: translateY(-1px); }
+.cl-meta { font-size: 11px; letter-spacing: .3px; color: #8f8c72; }
+.cl-artist { font-size: 13.5px; font-weight: 700; color: #2f2f22; }
+.cl-theme { font-size: 12px; color: #5c5a48; }
+.cl-toggle {
+  margin-top: 10px; flex: none; width: 100%; cursor: pointer; border: none;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 9px 0; border-radius: 999px;
+  background: linear-gradient(135deg, #9db452, #7f9a3c); color: #fff;
+  font-size: 12.5px; font-weight: 700; letter-spacing: .3px;
+}
+.cl-toggle:hover { filter: brightness(1.05); }
+.cl-arrow { transition: transform .2s; }
+.cl-arrow.up { transform: rotate(180deg); }
+
+/* 黄金云：列表最小化后在画面里漂浮移动，点击恢复列表
+   Golden cloud: drifts across the screen after minimize; click to restore the panel */
+.golden-cloud-wrap { position: fixed; inset: 0; z-index: 24; pointer-events: none; }   /* 过渡容器（仅淡入）· transition host, fade only */
+.golden-cloud {
+  position: fixed;
+  left: 18%; top: 26%;
+  width: 200px; height: 118px;
+  border: none; padding: 0; background: transparent; cursor: pointer;
+  pointer-events: auto;
+  animation: gc-drift 32s ease-in-out infinite;
+  filter: drop-shadow(0 0 18px rgba(255, 200, 60, .75)) drop-shadow(0 6px 16px rgba(0, 0, 0, .25));
+}
+.gc-puff {
+  position: absolute; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff6d8, #ffe39a 45%, #ffcf6a 100%);
+}
+/* 参考图轮廓：中偏下一大团 + 右侧一大颗 + 顶部小鼓包 + 左端小尾巴，底部为圆润弧线（无平底）
+   Reference silhouette: big lower-center mass + large right puff + top bumps + small left tail, rounded bottom (no flat base) */
+.gc-puff-1 { width: 100px; height: 100px; left: 56px; top: 18px; }  /* 中央主团（底部鼓包）· central main mass */
+.gc-puff-2 { width: 84px; height: 84px; left: 118px; top: 22px; }   /* 右侧大团 · large right puff */
+.gc-puff-3 { width: 62px; height: 62px; left: 24px; top: 28px; }    /* 左侧团 · left puff */
+.gc-puff-4 { width: 44px; height: 44px; left: 4px; top: 40px; }     /* 左端小尾巴 · small left tail */
+.gc-puff-5 { width: 66px; height: 66px; left: 60px; top: 4px; }     /* 顶部左鼓包 · top-left bump */
+.gc-puff-6 { width: 58px; height: 58px; left: 104px; top: 6px; }    /* 顶部右鼓包 · top-right bump */
+/* 小泡置于主团/右侧大团之后，让大团更突出 · small puffs behind the main/right mass so the big puffs stand out */
+.gc-puff-3, .gc-puff-4, .gc-puff-5, .gc-puff-6 { z-index: -1; }
+.golden-cloud:hover { animation-play-state: paused; filter: drop-shadow(0 0 26px rgba(255, 210, 80, .95)) drop-shadow(0 6px 16px rgba(0, 0, 0, .3)); }
+/* 四段路径循环，0% 与 100% 重合避免跳帧 · looping path with matching start/end to avoid a jump */
+@keyframes gc-drift {
+  0%   { left: 18%; top: 26%; }
+  25%  { left: 62%; top: 42%; }
+  50%  { left: 34%; top: 64%; }
+  75%  { left: 66%; top: 30%; }
+  100% { left: 18%; top: 26%; }
+}
+/* 淡入淡出放在无动画的包器上，避免 infinite 漂移动画把 Vue 的 leave 时长撑到 32s
+   Put the fade on the animation-free wrapper so the infinite drift doesn't stretch Vue's leave timeout to 32s */
+.cl-cloud-enter-active, .cl-cloud-leave-active { transition: opacity .4s ease; }
+.cl-cloud-enter-from, .cl-cloud-leave-to { opacity: 0; }
+@media (prefers-reduced-motion: reduce) { .golden-cloud { animation: none; left: auto; right: 16px; top: auto; bottom: 24px; } }
+/* 窄屏：欢迎卡占底部，列表改挂右上角（头部下方），避免两块浮层重叠
+   Narrow screens: the welcome card docks at the bottom, so the list moves under the header */
+@media (max-width: 640px) {
+  .concert-list { top: 64px; transform: none; right: 12px; width: min(240px, 58vw); max-height: 46vh; }
+}
+
 /* 窄屏：贴左居中会遮挡星球，改为底部浮层 · narrow screens: left-centered would cover the planet, dock to the bottom */
 @media (max-width: 640px) {
   .welcome-card {

@@ -17,6 +17,13 @@
     "hint": "不用著急，隨時可以開始",
     "close": "關閉"
   },
+  "concertList": {
+    "title": "演唱會列表",
+    "expand": "展開全部",
+    "collapse": "收起",
+    "minimize": "最小化",
+    "restore": "展開演唱會列表"
+  },
   "search": {
     "placeholder": "搜索藝人 / 主題 / 城市 / 演唱會…",
     "clear": "清空",

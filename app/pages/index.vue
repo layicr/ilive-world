@@ -52,4 +52,5 @@ useHead({
 <template>
   <PlanetScene />
   <PlanetWelcomeCard />
+  <PlanetConcertList />
 </template>

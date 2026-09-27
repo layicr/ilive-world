@@ -1,6 +1,6 @@
-# 星球小镇 · Planet Town
+# 3D 演唱会
 
-一座「会唱歌的小星球」——用 Three.js 手绘的 3D 演唱会场景。全站由 **Nuxt 4** 驱动：首页 `/` 即星球小镇，演唱会数据存在 **LibSQL / Turso** 数据库里，通过 `server/api` 供前端读取，支持 **简体中文 / English / 繁體中文** 三语。
+一座「会唱歌的小星球」——用 Three.js 手绘的 3D 演唱会场景。全站由 **Nuxt 4** 驱动：首页 `/` 即3D 演唱会（SSR/预渲染做 SEO 并承载客户端 3D 场景），演唱会数据存在 **LibSQL / Turso** 数据库里，通过 `server/api` 供前端读取，支持 **简体中文 / English / 繁體中文** 三语。
 
 ## 技术栈
 
@@ -42,8 +42,8 @@ DATABASE_URL=data/planet.db                     # 本地 SQLite 文件路径（�
 TURSO_AUTH_TOKEN=***                             # 仅 Turso 云模式需要
 
 # —— 域名与部署 ——
-NUXT_PUBLIC_SITE_URL=https://your.domain         # canonical/sitemap 兜底域名（库内 site_url 优先）
-# NUXT_TRUST_PROXY=true                          # 仅当部署在可信反代/CDN（Nginx、Cloudflare）后才需要，见下
+NUXT_PUBLIC_SITE_URL=https://iliveworld.lyc.la   # canonical/sitemap/og 兜底域名（库内 site_url 优先；缺省即此内置默认值）
+# NUXT_TRUST_PROXY=true                          # 仅部署在可信反代/CDN（Nginx、Cloudflare）后才需要；Vercel 自动采用 x-vercel-forwarded-for，无需此开关
 
 # —— 点赞安全（可选，均有内置默认）——
 # NUXT_IP_SALT=your-long-random-secret           # 点赞 IP 哈希盐：concert_likes.ip 存 HMAC-SHA256(盐,IP)，不落明文 IP
@@ -69,7 +69,7 @@ app/
 │  ├─ SiteHeader.vue           # 顶部导航（含艺人搜索框入口）
 │  ├─ ArtistSearch.vue         # 艺人搜索，点结果 → ?concert=<id> 让镜头转到对应舞台
 │  ├─ LocaleSwitcher.vue       # 三语切换（NuxtLink 客户端路由跳转，页面实例被复用）
-│  └─ planet/                  # PlanetScene（装配数据/文案）· PlanetCanvas（引擎挂载/暂停/语言切换）· WelcomeCard
+│  └─ planet/                  # PlanetScene（装配数据/文案）· PlanetCanvas（引擎挂载/暂停/语言切换）· WelcomeCard · ConcertList（右侧列表浮层 + 最小化飘出的黄金云按钮）
 ├─ composables/                # useConcerts / useSiteConfig / useWelcomeCard
 ├─ three/
 │  ├─ planetTown.ts            # 编排层：createPlanetTown(el, { stageInfos, labels }) → { unmount, pause, resume, setLang, focusConcert }
@@ -134,7 +134,7 @@ npm run test:e2e       # Playwright E2E（配置会自动拉起 dev server）
 ```
 
 - **单测**（`tests/unit/`）：i18n 拍平回退、`schema.sql` 表结构冻结、`safeLink`（XSS 转义 + URL 协议 / 主机白名单 + BVID 解析）、`concertLikes` 幂等点赞（首次 / 重复 / 取消 / 多 IP / 计数下限，用临时文件库）、`rateLimit` 固定窗口、`client-ip`（HMAC 去重 + 反代转发头）、`concert-config` 不变量、三语 locale key 一致。
-- **E2E**（`tests/e2e/`）：`/` 中文 hero 与 `/en/` `/zh-Hant/` 前缀、语言切换器切到英文、`/api/concerts` 结构合法且本地化字段随 locale 变化、like 接口校验（非法 id→400 / 不存在→404 / 正常 toggle）、**WebGL 画布挂载 + 点击舞台弹出信息卡（数据来自 API）+ 点赞**、轮播标签可见且 `×` 可收起、**切换语言时就地刷新已打开的信息卡**、三语 title/canonical/hreflang、JSON-LD 可解析、`og:type`、robots/sitemap/404 noindex。
+- **E2E**（`tests/e2e/`）：`/` 中文 hero 与 `/en/` `/zh-Hant/` 前缀、语言切换器切到英文、`/api/concerts` 结构合法且本地化字段随 locale 变化、like 接口校验（非法 id→400 / 不存在→404 / 正常 toggle）、**WebGL 画布挂载 + 点击舞台弹出信息卡（数据来自 API）+ 点赞**、轮播标签可见且 `×` 可收起、**列表最小化飘出黄金云（6 颗团泡）并可点云恢复**、**切换语言时就地刷新已打开的信息卡**、三语 title/canonical/hreflang、JSON-LD 可解析、`og:type`、robots/sitemap/404 noindex。
 
 - 无头环境用 SwiftShader 提供 WebGL，`playwright.config.ts` 已注入 `--use-angle=swiftshader` 等参数。
 - 固定 `locale: 'zh-CN'`，避免 i18n `detectBrowserLanguage` 把 `/` 重定向到 `/en/`。

@@ -17,6 +17,13 @@
     "hint": "©Layicr",
     "close": "关闭"
   },
+  "concertList": {
+    "title": "演唱会列表",
+    "expand": "展开全部",
+    "collapse": "收起",
+    "minimize": "最小化",
+    "restore": "展开演唱会列表"
+  },
   "search": {
     "placeholder": "搜索艺人 / 主题 / 城市 / 演唱会…",
     "clear": "清空",

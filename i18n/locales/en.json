@@ -17,6 +17,13 @@
     "hint": "No rush - start whenever you like",
     "close": "Close"
   },
+  "concertList": {
+    "title": "Concerts",
+    "expand": "Show all",
+    "collapse": "Collapse",
+    "minimize": "Minimize",
+    "restore": "Show concert list"
+  },
   "search": {
     "placeholder": "Search artist / theme / city / concert…",
     "clear": "Clear",
