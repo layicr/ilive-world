@@ -187,12 +187,13 @@ html, body { overflow-x: hidden; }
   width: 200px; height: 118px;
   border: none; padding: 0; background: transparent; cursor: pointer;
   pointer-events: auto;
+  transform: scale(0.7); transform-origin: center;   /* 整体缩小一点 · scale the cloud down a bit */
   animation: gc-drift 32s ease-in-out infinite;
   filter: drop-shadow(0 0 18px rgba(255, 200, 60, .75)) drop-shadow(0 6px 16px rgba(0, 0, 0, .25));
 }
 .gc-puff {
   position: absolute; border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #fff6d8, #ffe39a 45%, #ffcf6a 100%);
+  background: radial-gradient(circle at 35% 30%, #fffdf5, #fff4cf 45%, #ffe9b0 100%);
 }
 /* 参考图轮廓：中偏下一大团 + 右侧一大颗 + 顶部小鼓包 + 左端小尾巴，底部为圆润弧线（无平底）
    Reference silhouette: big lower-center mass + large right puff + top bumps + small left tail, rounded bottom (no flat base) */

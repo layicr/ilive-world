@@ -1,6 +1,6 @@
 # 3D 演唱会
 
-一座「会唱歌的小星球」——用 Three.js 手绘的 3D 演唱会场景。全站由 **Nuxt 4** 驱动：首页 `/` 即3D 演唱会（SSR/预渲染做 SEO 并承载客户端 3D 场景），演唱会数据存在 **LibSQL / Turso** 数据库里，通过 `server/api` 供前端读取，支持 **简体中文 / English / 繁體中文** 三语。
+一座会唱歌的 3D 演唱会星球——用 Three.js 手绘的演唱会场景。全站由 **Nuxt 4** 驱动：首页 `/` 即3D 演唱会（SSR/预渲染做 SEO 并承载客户端 3D 场景），演唱会数据存在 **LibSQL / Turso** 数据库里，通过 `server/api` 供前端读取，支持 **简体中文 / English / 繁體中文** 三语。
 
 ## 技术栈
 
@@ -64,7 +64,7 @@ NUXT_PUBLIC_SITE_URL=https://iliveworld.lyc.la   # canonical/sitemap/og 兜底�
 ```
 app/
 ├─ app.vue                     # 全局 head：titleTemplate / hreflang / canonical / og / twitter / robots
-├─ pages/index.vue             # 星球首页（唯一入口：SSR + JSON-LD WebSite + Three.js 3D 场景 + 欢迎卡）
+├─ pages/index.vue             # 3D 演唱会首页（唯一入口：SSR + JSON-LD WebSite + Three.js 3D 场景 + 欢迎卡）
 ├─ components/
 │  ├─ SiteHeader.vue           # 顶部导航（含艺人搜索框入口）
 │  ├─ ArtistSearch.vue         # 艺人搜索，点结果 → ?concert=<id> 让镜头转到对应舞台
@@ -74,7 +74,7 @@ app/
 ├─ three/
 │  ├─ planetTown.ts            # 编排层：createPlanetTown(el, { stageInfos, labels }) → { unmount, pause, resume, setLang, focusConcert }
 │  ├─ concert/                 # 演唱会子系统：index（装配 + 每帧更新 + setLang）· card / cardCss · modal · hitTest · marquee · safeLink
-│  └─ town/                    # 小镇子系统：village · characters · atmosphere · orbit
+│  └─ town/                    # 星球子系统（村庄/角色/氛围/环绕）：village · characters · atmosphere · orbit
 ├─ assets/css/main.css
 └─ error.vue                   # 404/错误页（robots: noindex）
 server/
@@ -121,7 +121,7 @@ schema.sql                     # 权威表结构（字段冻结，见下）
 
 - 每页每语言的 title / description / canonical / og / twitter，站点级文案读自 `site_settings` + `site_seo_i18n`（库不可用时回退 locale 文件与 `NUXT_PUBLIC_SITE_URL`）。
 - `useLocaleHead` 输出 hreflang alternates（zh-CN / en / zh-Hant / x-default）与 `og:locale`。
-- JSON-LD：首页 `WebSite`（含 `workExample` 指向星球，`interactionCount` 用真实点赞总和）。
+- JSON-LD：首页 `WebSite`（含 `workExample` 指向本站 3D 演唱会场景，`interactionCount` 用真实点赞总和）。
 - 静态 `public/robots.txt`（含 Sitemap 绝对 URL）与 `public/sitemap.xml`（3 URL：`/` × 3 语言）。
 - 首页虽为客户端 3D 画布，但 SSR 输出标题、meta 与 JSON-LD，爬虫不会看到空壳。
 - 首页与 `/en/`、`/zh-Hant/` 预渲染；`error.vue` 返回真实 404 且 `noindex`。
